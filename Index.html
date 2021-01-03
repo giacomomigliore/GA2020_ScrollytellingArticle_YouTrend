@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Mapbox Storytelling</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css' rel='stylesheet' />
+    <script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
+    <script src="https://unpkg.com/papaparse@latest/papaparse.min.js"></script>
+    <!-- <script  type="text/javascript" src="scrollama.js"></script> -->
+    <script src="https://unpkg.com/scrollama"></script>
+    <link href='./styleLongRead.css' rel='stylesheet' />
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+  	<script type="text/javascript" src="d3-iconarray.js"></script>
+  </head>
+<body>
+
+<div id="header" class="header" style="background-color: white;">
+  <table id="wrapper">
+    <tr>
+      <td>
+        <a href="https://www.youtrend.it/">
+          <img src="https://www.youtrend.it/wp-content/uploads/2017/04/YouTrend-logo-testata.png" class="youtrendimg"></img>
+        </a>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div id="map"></div>
+<div id="story"></div>
+
+<script src="./contenuto.js"></script>
+<script src="./mapHandling.js"></script>
+
+<script>
+
+function addAuthors() {
+  var div_coauthors = document.createElement('div');
+  div_coauthors.setAttribute('style','fdisplay: inline-block;vertical-align: middle;margin-right: 10px;');
+
+  var div_Gianluca = document.createElement('div');
+  div_Gianluca.setAttribute('style','display:inline-block;');
+  var span_Gianluca = document.createElement('span');
+  span_Gianluca.setAttribute('style','margin-right: 10px;');
+  var link_Gianluca = document.createElement('a');
+  link_Gianluca.setAttribute('style','color: #818181;');
+  link_Gianluca.setAttribute('href','https://www.youtrend.it/author/gianluca-lo-nostro/');
+  var img_Gianluca = document.createElement('img');
+  img_Gianluca.setAttribute('style','margin: 0 4px 0 0;border-radius: 50%;vertical-align: -8px;display: inline-block;');
+  img_Gianluca.setAttribute('width','24;');
+  img_Gianluca.setAttribute('height','24;');
+  img_Gianluca.setAttribute('src','https://secure.gravatar.com/avatar/369a7fa6681070f2073d15e9aadc59ac?s=24&d=identicon&r=g');
+  var link_Gianluca_text = document.createElement('span');
+  link_Gianluca_text.innerHTML = 'Gianluca Lo Nostro';
+  link_Gianluca_text.classList.add('authors');
+
+  var div_Giacomo = document.createElement('div');
+  div_Giacomo.setAttribute('style','display:inline-block;');
+  var span_Giacomo = document.createElement('span');
+  span_Giacomo.setAttribute('style','margin-right: 10px;');
+  var link_Giacomo = document.createElement('a');
+  link_Giacomo.setAttribute('style','color: #818181;');
+  link_Giacomo.setAttribute('href','https://www.youtrend.it/author/giacomo-migliore');
+  var img_Giacomo = document.createElement('img');
+  img_Giacomo.setAttribute('style','margin: 0 4px 0 0;border-radius: 50%;vertical-align: -8px;display: inline-block;');
+  img_Giacomo.setAttribute('width','24;');
+  img_Giacomo.setAttribute('height','24;');
+  img_Giacomo.setAttribute('src','https://secure.gravatar.com/avatar/dd8cc996b7cc5fdb7ed70da6e4237264?s=24&d=identicon&r=g');
+  var link_Giacomo_text = document.createElement('span');
+  link_Giacomo_text.innerHTML = 'Giacomo Migliore';
+  link_Giacomo_text.classList.add('authors');
+
+  var div_data = document.createElement('div');
+  div_data.setAttribute('style','display:inline-block;');
+  var span_data = document.createElement('span');
+  span_data.setAttribute('style','margin-right: 20px;');
+  span_data.classList.add('authors');
+  span_data.innerHTML = '4 Gennaio 2021';
+
+  div_data.appendChild(span_data);
+  link_Gianluca.appendChild(img_Gianluca);
+  link_Gianluca.appendChild(link_Gianluca_text);
+  span_Gianluca.appendChild(link_Gianluca);
+  div_Gianluca.appendChild(span_Gianluca);
+  div_coauthors.appendChild(div_Gianluca);
+  link_Giacomo.appendChild(img_Giacomo);
+  link_Giacomo.appendChild(link_Giacomo_text);
+  span_Giacomo.appendChild(link_Giacomo);
+  div_Giacomo.appendChild(span_Giacomo);
+  div_coauthors.appendChild(div_Giacomo);
+  div_coauthors.appendChild(div_data);
+  return div_coauthors;
+}
+
+var story = document.getElementById('story');
+var features = document.createElement('div');
+features.setAttribute('id', 'features');
+
+var header = document.createElement('div');
+
+if (config.title) {
+    var titleText = document.createElement('h1');
+    titleText.innerText = config.title;
+    header.appendChild(titleText);
+}
+
+if (config.subtitle) {
+    var subtitleText = document.createElement('h2');
+    subtitleText.innerText = config.subtitle;
+    header.appendChild(subtitleText);
+}
+
+if (config.byline) {
+    var bylineText = document.createElement('p');
+    bylineText.innerText = config.byline;
+    header.appendChild(bylineText);
+}
+
+if (header.innerText.length > 0) {
+    header.classList.add(config.theme);
+    header.setAttribute('id', 'header');
+    story.appendChild(header);
+}
+
+config.chapters.forEach((record, idx) => {
+    var container = document.createElement('div');
+    var chapter = document.createElement('div');
+
+
+    if (record.title) {
+        var title = null;
+        if(idx === 0) title = document.createElement('h1');
+        else title = document.createElement('h2');
+        title.innerText = record.title;
+        chapter.appendChild(title);
+    }
+
+    if (record.subtitle) {
+        var subtitle = document.createElement('h2');
+        subtitle.innerText = record.subtitle;
+        if (idx === 0) subtitle.classList.add('title');
+        chapter.appendChild(subtitle);
+    }
+
+    if (record.image) {
+        var image = new Image();
+        if(mobileDisplay){
+          if(record.imageMobile){
+            image.src = record.imageMobile;
+          }else{
+            image.src = record.image;
+          }
+        }else{
+          image.src = record.image;
+        }
+        image.classList.add('image');
+        chapter.appendChild(image);
+    }
+
+    if (record.flourish) {
+        var flourish_div = document.createElement('div');
+        var flourish_script = document.createElement('script');
+        flourish_script.src = 'https://public.flourish.studio/resources/embed.js';
+        flourish_div.classList.add('flourish-embed');
+        flourish_div.classList.add('flourish-cards');
+        flourish_div.setAttribute('data-src',record.flourish);
+        flourish_div.appendChild(flourish_script);
+        chapter.appendChild(flourish_div);
+    }
+
+    if (record.description) {
+        if(record.id == 'titolo'){
+          chapter.appendChild(addAuthors());
+        }
+        else{
+          var story = document.createElement('p');
+          story.innerHTML = record.description;
+          if(record.id == 'Senato_in_bilico'){
+              var senate_div = document.createElement('div');
+              senate_div.setAttribute('id','senate-example');
+              story.appendChild(senate_div);
+          }
+          // if(record.id == 'Senato_vizualization'){
+          //     var senate_div = document.createElement('div');
+          //     senate_div.setAttribute('id','senate-example');
+          //     story.appendChild(senate_div);
+          // }
+          if(record.id == 'Risultati_Per_Oss'){
+              var bar_Per_Oss = document.createElement('div');
+              bar_Per_Oss.setAttribute('id','bar_Per_Oss');
+              story.insertBefore(bar_Per_Oss, story.childNodes[0]);
+          }if(record.id == 'Risultati_Loe_war'){
+              var bar_Loe_war = document.createElement('div');
+              bar_Loe_war.setAttribute('id','bar_Loe_war');
+              story.insertBefore(bar_Loe_war, story.childNodes[0]);
+          }if(record.id == 'Risultati_Biden_Oss'){
+              var bar_Bid_Oss = document.createElement('div');
+              bar_Bid_Oss.setAttribute('id','bar_Bid_Oss');
+              story.appendChild(bar_Bid_Oss);
+          }if(record.id == 'Early_voting'){
+              var linechart = document.createElement('div');
+              linechart.setAttribute('id','linechart');
+              story.insertBefore(linechart, story.childNodes[0]);
+              // story.appendChild(linechart);
+          }if(record.id == 'Early_voting2'){
+              var tabellaEv = document.createElement('div');
+              tabellaEv.setAttribute('id','tabellaEv');
+              story.insertBefore(tabellaEv, story.childNodes[0]);
+              // story.appendChild(linechart);
+          }
+          // if(record.id == 'Early_voting'){
+          //     var linechart = document.createElement('div');
+          //     linechart.setAttribute('id','linechart');
+          //     story.appendChild(linechart);
+          // }
+          if(record.id == 'strategia'){
+            var video_strategia = document.createElement('div');
+            video_strategia.setAttribute('style', 'display:block;margin: auto;;align-content: center;');
+            var blockquote = document.createElement('blockquote');
+            blockquote.setAttribute('style', 'display:block;margin: auto;align-content: center;');
+            blockquote.classList.add('twitter-tweet');
+            var p_tweet = document.createElement('p');
+            p_tweet.setAttribute('lang', 'en');
+            p_tweet.setAttribute('dir', 'ltr');
+            p_tweet.innerHTML = 'I told you the smear ads were coming, but Georgians will see Sen. <a href=\"https://twitter.com/KLoeffler?ref_src=twsrc%5Etfw\">@Kloeffler</a>\’s ads for what they are. <a href=\"https://t.co/0sgU8ndC63\">pic.twitter.com/0sgU8ndC63</a>&mdash; Reverend Raphael Warnock (@ReverendWarnock) <a href=\"https://twitter.com/ReverendWarnock/status/1331326729739243527?ref_src=twsrc%5Etfw\">November 24, 2020</a>';
+            //p_tweet.innerHTML = 'I told you the smear ads were coming, but Georgians will see Sen. Kloeffler\’s ads for what they are.&mdash; Reverend Raphael Warnock November 24, 2020</a>';
+            var twitter_script =  document.createElement('script');
+            twitter_script.setAttribute('src', 'https://platform.twitter.com/widgets.js');
+            twitter_script.setAttribute('charset', 'utf-8');
+
+            blockquote.appendChild(p_tweet);
+            blockquote.appendChild(twitter_script);
+            video_strategia.appendChild(blockquote);
+            story.append(video_strategia);
+            // story.appendChild(video_strategia);
+          }if(record.id == 'soldi'){
+              var title_finanziamenti = document.createElement('div');
+              title_finanziamenti.setAttribute('id','title_finanziamenti');
+              //story.insertBefore(title_finanziamenti, story.childNodes[0]);
+              story.insertBefore(title_finanziamenti, story.childNodes[0]);
+          }if(record.id == 'chiVince'){
+            console.log("fonti");
+            var tFonti = document.createElement('p');
+            tFonti.innerHTML = "</br></br>Fonti e metodologia</br>";
+            tFonti.setAttribute('style', 'font-style: oblique;font-weight:700;');
+            var pFonti = document.createElement('p');
+            pFonti.classList.add('par_fonti');
+            var pcodice = document.createElement('p');
+            pcodice.classList.add('par_fonti');
+            pFonti.innerHTML = "I <a href=\'https://results.enr.clarityelections.com/GA/105369/web.264614/#/access-to-races\'>risultati del primo</a> turno a livello di contea e di seggio e i dati sull\'<a href=\'https://elections.sos.ga.gov/Elections/voterabsenteefile.do\'>affluenza al voto anticipato</a> al secondo turno sono stati scaricati dal sito del Georgia Secretary of State. I dati sull’etnia degli elettori al voto anticipato sono resi disponibili su <a href=\'https://electproject.github.io/Early-Vote-2020G/GA_RO.html\'>github</a> da Michael McCohen, professore di Scienze Politiche all’University of Florida. Il valore dei finanziamenti ricevuto dai partiti è ripreso da <a href=\'https://eu.savannahnow.com/story/news/2020/12/28/georgia-senate-runoffs-fundraising-kelly-loeffler-raphael-warnock-jon-ossoff-david-perdue/4058929001/\'> questo articolo</a> del Savannah Morning News. I risultati dei sondaggi del Trafalgar Group sono disponibili a <a href=\'https://drive.google.com/file/d/1FZxr3-wZptgUBdBqF8TCWvheTucHSFQu/view\'>questo link</a>.";
+            pcodice.innerHTML = "Il codice analisi dei dati e di visualizzazione di questo articolo è liberamente accessibile a <a href=\'https://github.com/giacomomigliore/GA2020SenateRunoff_Article_YouTrend\'>questo link</a>.";
+            story.append(tFonti);
+            story.append(pFonti);
+            story.append(pcodice);
+
+          }
+          chapter.appendChild(story);
+        }
+    }
+
+    // Border only where background is a map
+    if (record.neutral) chapter.setAttribute('style','box-shadow:0px rgba(0,0,0,0); padding:0px;');
+    else chapter.setAttribute('style','box-shadow:1px 1px 5px rgba(0,0,0,.15);padding:18px 20px 18px 23px;');
+
+    container.setAttribute('id', record.id);
+    container.classList.add('step');
+    //if (record.neutral) container.setAttribute('style','opacity:1;');
+
+    if(idx === 0 || idx === 2 || idx == 16 ||
+      idx === 4|| idx == 18 || idx == 13 || idx == 14 || idx == 19){
+      container.classList.add('short_chapter');
+    }else if(idx === 1 || idx == 12 || idx == 15 || idx == 17 || idx == 18){
+      container.classList.add('no_chapter');
+    }else{
+      container.classList.add('long_chapter');
+    }
+    if (idx === 0) {
+        container.classList.add('active');
+        container.classList.add('title');
+    }
+
+    chapter.classList.add(config.theme);
+    container.appendChild(chapter);
+    container.classList.add(alignments[record.alignment] || 'centered');
+    if (record.hidden) {
+        container.classList.add('hidden');
+    }
+    features.appendChild(container);
+});
+
+    console.log(features);
+story.appendChild(features);
+
+var footer = document.createElement('div');
+
+if (config.footer) {
+    var footerText = document.createElement('p');
+    footerText.innerHTML = config.footer;
+    footer.appendChild(footerText);
+}
+
+if (footer.innerText.length > 0) {
+    footer.classList.add(config.theme);
+    footer.setAttribute('id', 'footer');
+    story.appendChild(footer);
+}
+
+window.addEventListener('resize', scroller.resize);
+
+</script>
+<script type="text/javascript" src="senate_viz.js"></script>
+<script type="text/javascript" src="barChart.js"></script>
+<script type="text/javascript" src="linechart.js"></script>
+<script type="text/javascript" src="finanziamenti.js"></script>
+<script type="text/javascript" src="barChartLegenda.js"></script>
+<script type="text/javascript" src="tableEv.js"></script>
+
+</body>
+</html>

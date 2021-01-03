@@ -1,0 +1,279 @@
+body, body *   {
+    margin:0;
+    font-size: 20px;
+    padding:0;
+    font-family: 'Libre Franklin', sans-serif;
+    color: #000;
+    letter-spacing: 1px;
+    line-height: 1.8em;
+    font-weight: 400;
+}
+a, a:hover, a:visited {
+    color: #0071bc;
+    text-decoration: none;
+}
+h1 {
+  font-size: 42px;
+  text-align: center;
+  color: #111111;
+  font-weight: 700;
+  line-height: 1.2;
+}
+h2 {
+  font-size: 24px;
+  text-align: center;
+  color: #111111;
+  font-weight: 700;
+  line-height: 1.2;
+}
+h3 {
+  font-size: 20px;
+}
+#map {
+    top:0;
+    height: 100vh;
+    width:100vw;
+    position: fixed;
+}
+#header {
+    margin: auto;
+    width: 100%;
+    position: relative;
+    z-index: 5;
+}
+#header h1, #header h2, #header p {
+    margin: 0;
+    padding: 2vh 2vw;
+    text-align: center;
+}
+#footer {
+    width: 100%;
+    min-height: 5vh;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    text-align: center;
+    line-height: 25px;
+    font-size: 13px;
+    position: relative;
+    z-index: 5;
+}
+#features {
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+}
+.hidden {
+    visibility: hidden;
+}
+.centered {
+    width: 50vw;
+    margin: 0 auto;
+}
+.lefty {
+    width: 33vw;
+    margin-left: 5vw;
+}
+.righty {
+    width: 33vw;
+    margin-left: 62vw;
+}
+.fully {
+    width: 100%;
+    margin: auto;
+}
+.light {
+    color: #444;
+    background-color: #fafafa;
+}
+.dark {
+    color: #fafafa;
+    background-color: #444;
+}
+.title {
+    margin-top: 35vh;
+}
+.title h2 {
+    margin-top: 20px;
+}
+.title p {
+    margin-top: 20px;
+    text-align: center;
+}
+.step {
+    /* padding-bottom: 50vh; */
+    /* margin-bottom: 10vh; */
+    opacity: 0.7;
+}
+.long_chapter {
+    padding-bottom: 70vh;
+    padding-top: 20vh;
+    /* margin-bottom: 10vh; */
+    /* opacity: 0.25; */
+}
+.short_chapter {
+    padding-bottom: 30vh;
+    /* margin-bottom: 10vh; */
+    /* opacity: 0.25; */
+}
+.no_chapter {
+    padding-bottom: 15vh;
+    /* margin-bottom: 10vh; */
+    /* opacity: 0.25; */
+}
+.step.active {
+    opacity: 0.9;
+}
+
+.step div {
+    /*padding:  25px 50px;*/
+    line-height: 25px;
+    font-size: 20px;
+    background-color: rgba(255,255,255,0.95);
+    /* box-shadow: 1px 1px 5px rgba(0,0,0,.15);
+    padding: 18px 20px 18px 23px;*/
+    border-radius: 3px;
+}
+
+div.flourish-credit {
+  background-color: rgba(255,255,255,0);
+}
+
+.step div.flourish-cards {
+    padding:  -0.75rem;
+    line-height: 0px;
+    background-color: rgba(255,255,255,1);
+    box-shadow: 0px 0px 0px rgba(0,0,0,0);
+    padding: 0px 0px 0px 0px;
+    width: 350px;
+    border-radius: 0px;
+    margin: 0 auto;
+    opacity: 1;
+}
+
+.authors {
+    font-size: 14px;
+}
+
+@media (max-width: 750px) {
+    .centered, .lefty, .righty, .fully {
+        width: 90vw;
+        margin: 0 auto;
+    }
+}
+
+/* Fix issue on mobile browser where scroll breaks  */
+.mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate.mapboxgl-touch-drag-pan,
+.mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate.mapboxgl-touch-drag-pan .mapboxgl-canvas {
+    touch-action: unset;
+}
+
+.mapboxgl-popup {
+		max-width: 400px;
+		font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+/* d3 */
+.R, .Repubblicano{
+  fill:#a32121;
+}
+
+.Ballottaggio, .B{
+  stroke:#CCC;
+  stroke-width:2;
+  fill: none;
+}
+
+.D, .Democratico{
+  fill:#253278;
+}
+
+.I{
+  fill:#CCC;
+}
+
+.key-element text{
+  font-size: 14px
+}
+
+/* lineChart */
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2px;
+}
+
+.dot2020 {
+    fill: none;
+    stroke: #253278;
+}
+
+.dot2021 {
+    fill: #FFF;
+    stroke: #a32121;
+}
+
+.grid line {
+  stroke: lightgrey;
+  stroke-opacity: 0.7;
+  shape-rendering: crispEdges;
+}
+
+.grid path {
+  stroke-width: 0;
+}
+
+.hover-line {
+  stroke: #B74779;
+  stroke-width: 2px;
+  stroke-dasharray: 3,3;
+}
+
+.axis {
+  font-size: 8px;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+}
+
+td, th {
+  padding: 1px 4px;
+  font-size: 14px
+}
+
+tr:nth-child(even) {background: #CCC}
+
+tr:nth-child(odd) {background: #FFF}
+
+tr:first-child, td:first-child { font-weight: bold }
+
+
+.header div{
+  background-color: white;
+  width: 100vw;
+  opacity:1;
+  padding: 10px;
+  margin: 10px;
+}
+ .youtrendimg{
+  vertical-align:middle;
+  display:inline-block;
+ }
+ #wrapper {
+   height:100px;
+   width: 100%;
+   margin: 0;
+   padding: 0;
+   border: 0;
+}
+#wrapper td {
+   vertical-align: middle;
+   text-align: center;
+}
+
+.par_fonti{
+  font-style: oblique;
+  text-align: justify;
+  text-justify: inter-word;
+}
