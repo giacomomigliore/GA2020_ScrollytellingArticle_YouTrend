@@ -6,7 +6,6 @@
  *
  */
 
-
 // Make the linechart responsive:
 // Define the linechart dimensions according to its parent div
 var widthLC = document.getElementById('linechart').clientWidth;
@@ -25,17 +24,18 @@ var valueline = d3.line()
   .x(function(d) { return xLC(d.dayToElection); })
   .y(function(d) { return yLC(d.ev2020); });
 
-  // Define the path of the line plotting the earlz votes of November 3.
+// Define the path of the line plotting the earlz votes of November 3.
 var valueline2 = d3.line()
   .curve(d3.curveMonotoneX)
   .x(function(d) { return xLC(d.dayToElection); })
   .y(function(d) {  return yLC(d.ev2021); });
 
 
-  // Retrieve the div where the linechiart will be inserted
-// append the svgLC obgect to the body of the page
-// appends a 'group' element to 'svgLC'
-// moves the 'group' element to the top left margin
+// Retrieve the div where the linechiart will be inserted
+// Append the svgLC obgect to the body of the page
+// Corrects to viewBox to correctly show the y axis lables
+// Center the chart with CSS display and margin attributes
+// Move to the top left margin
 var svgLC = d3.select("#linechart").append("svg")
   .attr("width", plotWidthLC + margin.left + margin.right)
   .attr("height", heightLC + margin.top + margin.bottom)
@@ -46,26 +46,23 @@ var svgLC = d3.select("#linechart").append("svg")
   .attr("transform",
         "translate(" + margin.left + "," + margin.top + ")");
 
-// Get the dataLC
+// Get the data from the online file and afterwards (then) plot them
 d3.csv("https://raw.githubusercontent.com/giacomomigliore/USA2020Elections/master/earlyVoting%20-%20Copy.csv").then( function( data) {
-// if (error) throw error;
 
-// format the dataLC
+// Format the data
 data.forEach(function(d) {
     d.dayToElection = +d.dayToElection;
     d.ev2020 = +d.ev2020;
     d.ev2021 = +d.ev2021;
 });
 
-    console.log("ci sono");
-// Scale the range of the dataLC
+// Scale the data to the range defined above
 xLC.domain([1, d3.max(data, function(d) {
    return d.dayToElection; })]);
 yLC.domain([0, d3.max(data, function(d) {
   return Math.max(d.ev2020, d.ev2021); })]);
 
-
-// Add the valueline path.
+// Add the November 3 line
 svgLC.append("path")
     .data([data])
     .attr("class", "line")
@@ -73,7 +70,7 @@ svgLC.append("path")
     .style("stroke-dasharray", "5,3")
     .attr("d", valueline);
 
-// Add the valueline2 path.
+// Add the January 5 line
 svgLC.append("path")
     .data([data])
     .attr("class", "line")
@@ -81,7 +78,7 @@ svgLC.append("path")
     .style("stroke-width", "3px")
     .attr("d", valueline2);
 
-
+// Add a lable to clarify the x axisLeft
 svgLC.append("text")
     .attr("class", "x label")
     .attr("text-anchor", "end")
@@ -91,16 +88,17 @@ svgLC.append("text")
     .text("Giorni dall'apertura del voto anticipato");
 
 
-// Add the xLC Axis
+// Add the x axis
 svgLC.append("g")
     .style("font-size","12px")
     .attr("transform", "translate(0," + heightLC + ")")
     .call(d3.axisBottom(xLC).ticks(8));
 
-// Add the yLC Axis
+// Add the y axis
 svgLC.append("g")
     .call(d3.axisLeft(yLC).ticks(4));//..style("font-size","12px");
 
+// Add the ticks
 d3.selectAll(".tick")
 .classed("axis", true);
 
