@@ -1,26 +1,38 @@
-var margin = {top:30, right: 30, bottom: 30, left: 60};
+/**
+ * Linechart plotting early votes.
+ *
+ * The file desings a linechart using d3 in a parent div already present into the webpage.
+ * Early votes refer to votes caste before Novembre 3 2020 and before January 5 2021.
+ *
+ */
 
+
+// Make the linechart responsive:
+// Define the linechart dimensions according to its parent div
 var widthLC = document.getElementById('linechart').clientWidth;
+var margin = {top:30, right: 30, bottom: 30, left: 60};
 var heightLC = widthLC*2/5;
 var plotWidthLC = widthLC - (margin.left + margin.right);
 
-// set the ranges
+// Set the ranges.
+// Ranges are used to interpolate the values to plot on the x and y axis within the dimension of the area of the chart (in pixels).
 var xLC = d3.scaleLinear().range([0, plotWidthLC]);
 var yLC = d3.scaleLinear().range([heightLC, 0]);
 
-// define the 1st line
+// Define the path of the line plotting the early votes of November 3 election.
 var valueline = d3.line()
   .curve(d3.curveCatmullRomOpen)
   .x(function(d) { return xLC(d.dayToElection); })
   .y(function(d) { return yLC(d.ev2020); });
 
-//console.log(xLC(d.ev2020));
-// define the 2nd line
+  // Define the path of the line plotting the earlz votes of November 3.
 var valueline2 = d3.line()
   .curve(d3.curveMonotoneX)
   .x(function(d) { return xLC(d.dayToElection); })
   .y(function(d) {  return yLC(d.ev2021); });
 
+
+  // Retrieve the div where the linechiart will be inserted
 // append the svgLC obgect to the body of the page
 // appends a 'group' element to 'svgLC'
 // moves the 'group' element to the top left margin
