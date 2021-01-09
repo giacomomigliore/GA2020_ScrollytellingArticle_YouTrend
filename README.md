@@ -17,8 +17,10 @@
   ![alt text](./GIF/GIFDesktop.gif)
 
  ## Visualizations
- ![alt text](./images/senate_viz.PNG)
- ![alt text](./images/bar_result.PNG)
+ * Senate members before Georgia runoff
+   ![alt text](./images/senate_viz.PNG)
+ * November 3 results
+   ![alt text](./images/bar_result.PNG)
  ![alt text](./images/bar_legend.PNG)
  ![alt text](./images/dollars_spent.PNG)
  ![alt text](./images/early_vote.PNG)
