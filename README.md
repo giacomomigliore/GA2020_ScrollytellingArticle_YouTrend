@@ -5,10 +5,11 @@
  ## Table of contents
  * [General info](#general-info)
  * [Final result](#final-result)
- * [Visualizations](#visualizations)
+ * [d3 Visualizations](#d3-visualizations)
  * [Built with](#built-with)
  * [Prerequisites](#prerequisites)
  * [License](#license)
+ * [Acknowledgments](#acknowledgments)
 
  ## General info
  This is a scrollytelling article created for YouTrend. The content presents what people need to know before the 2021 Senate Goergia runoffs. The article is entirely created with html and javascript. The data displayed on the mapx and charts has been downloaded either manually or scratched with python, it has been cleant with python and uploaded in csv filed on github.
@@ -16,11 +17,11 @@
  ## Final result
   ![alt text](./GIF/GIFDesktop.gif)
 
- ## Visualizations
+ ## d3 Visualizations
  * Senate members before Georgia runoff
-   <img src="https://github.com/giacomomigliore/GA2020_ScrollytellingArticle_YouTrend/tree/main/images/senate_viz.PNG" width="700">
+   ![alt text](./images/senate_viz.PNG)
  * November 3 results
-   ![alt text](https://github.com/giacomomigliore/GA2020_ScrollytellingArticle_YouTrend/tree/main/images/bar_result.PNG)
+   ![alt text](./images/bar_result.PNG)
  * Legend to map comparing number of votes received by Biden and by Ossoff on November 3
    ![alt text](./images/bar_legend.PNG)
  * Dollars spent between November 3 and January 5
@@ -40,8 +41,13 @@
    * d3.js
 
  ## Prerequisites
-To run this page locally, you need to create a Mapbox access token by creating an account on Mapbox.com.
-To run the Python code to download and clean the necessary data, be sure to use the correct full paths when writing or reading files.
+* To run this page locally, you need to create a Mapbox access token by creating an account on Mapbox.com.
+* To run the Python code to download and clean the necessary data, be sure to use the correct full paths when writing or reading files.
 
  ## License
 This project is licensed under the [GNU GPLv3 License](https://choosealicense.com/licenses/gpl-3.0/).
+
+ ## Acknowledgments
+ * The scrollytelling approach was created using the guide: ["How to build a “scrollytelling” map"](https://blog.mapbox.com/how-to-build-a-scrollytelling-map-ead6baf2cd1b);
+ * Joining electoral results and geographical areas has been done following the ["Data Joins"](https://labs.mapbox.com/education/impact-tools/data-joins/) guide;
+ * The senate visualization in the introduction was inspired from Tom Pearson's [2014 US senate election](http://bl.ocks.org/tomgp/59b5d482551ca14a4063) visualization for the Financial Times.
