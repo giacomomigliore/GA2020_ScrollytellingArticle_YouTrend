@@ -16,6 +16,8 @@
   </head>
 <body>
 
+<!-- All html content are 3 div. The rest is loaded though javascript -->
+<!-- YouTrend header -->
 <div id="header" class="header" style="background-color: white;">
   <table id="wrapper">
     <tr>
@@ -27,7 +29,6 @@
     </tr>
   </table>
 </div>
-
 <div id="map"></div>
 <div id="story"></div>
 
@@ -36,6 +37,7 @@
 
 <script>
 
+// Add authors and date with the style used by YouTrend
 function addAuthors() {
   var div_coauthors = document.createElement('div');
   div_coauthors.setAttribute('style','fdisplay: inline-block;vertical-align: middle;margin-right: 10px;');
@@ -97,7 +99,6 @@ function addAuthors() {
 var story = document.getElementById('story');
 var features = document.createElement('div');
 features.setAttribute('id', 'features');
-
 var header = document.createElement('div');
 
 if (config.title) {
@@ -124,10 +125,16 @@ if (header.innerText.length > 0) {
     story.appendChild(header);
 }
 
+// Add all chapters as defined in contenuto.js
+// idx is the index and helps identify which chapter is being created
 config.chapters.forEach((record, idx) => {
     var container = document.createElement('div');
     var chapter = document.createElement('div');
 
+    /*
+     * In the following lines, some code is applied only to specific chapters.
+     * Chapters are identifies through their id.
+     */
 
     if (record.title) {
         var title = null;
@@ -178,44 +185,39 @@ config.chapters.forEach((record, idx) => {
           var story = document.createElement('p');
           story.innerHTML = record.description;
           if(record.id == 'Senato_in_bilico'){
-              var senate_div = document.createElement('div');
-              senate_div.setAttribute('id','senate-example');
-              story.appendChild(senate_div);
+            // Add senate_viz.js visualization
+            var senate_div = document.createElement('div');
+            senate_div.setAttribute('id','senate-example');
+            story.appendChild(senate_div);
           }
-          // if(record.id == 'Senato_vizualization'){
-          //     var senate_div = document.createElement('div');
-          //     senate_div.setAttribute('id','senate-example');
-          //     story.appendChild(senate_div);
-          // }
           if(record.id == 'Risultati_Per_Oss'){
-              var bar_Per_Oss = document.createElement('div');
-              bar_Per_Oss.setAttribute('id','bar_Per_Oss');
-              story.insertBefore(bar_Per_Oss, story.childNodes[0]);
+            // Add barChart.js visualization
+            var bar_Per_Oss = document.createElement('div');
+            bar_Per_Oss.setAttribute('id','bar_Per_Oss');
+            story.insertBefore(bar_Per_Oss, story.childNodes[0]);
           }if(record.id == 'Risultati_Loe_war'){
-              var bar_Loe_war = document.createElement('div');
-              bar_Loe_war.setAttribute('id','bar_Loe_war');
-              story.insertBefore(bar_Loe_war, story.childNodes[0]);
+            // Add barChart.js visualization
+            var bar_Loe_war = document.createElement('div');
+            bar_Loe_war.setAttribute('id','bar_Loe_war');
+            story.insertBefore(bar_Loe_war, story.childNodes[0]);
           }if(record.id == 'Risultati_Biden_Oss'){
-              var bar_Bid_Oss = document.createElement('div');
-              bar_Bid_Oss.setAttribute('id','bar_Bid_Oss');
-              story.appendChild(bar_Bid_Oss);
+            // Add barChartLegenda.js visualization
+            var bar_Bid_Oss = document.createElement('div');
+            bar_Bid_Oss.setAttribute('id','bar_Bid_Oss');
+            story.appendChild(bar_Bid_Oss);
           }if(record.id == 'Early_voting'){
-              var linechart = document.createElement('div');
-              linechart.setAttribute('id','linechart');
-              story.insertBefore(linechart, story.childNodes[0]);
-              // story.appendChild(linechart);
+            // Add lineChart.js visualization
+            var linechart = document.createElement('div');
+            linechart.setAttribute('id','linechart');
+            story.insertBefore(linechart, story.childNodes[0]);
           }if(record.id == 'Early_voting2'){
-              var tabellaEv = document.createElement('div');
-              tabellaEv.setAttribute('id','tabellaEv');
-              story.insertBefore(tabellaEv, story.childNodes[0]);
-              // story.appendChild(linechart);
+            // Add table as in tableEv.js
+            var tabellaEv = document.createElement('div');
+            tabellaEv.setAttribute('id','tabellaEv');
+            story.insertBefore(tabellaEv, story.childNodes[0]);
           }
-          // if(record.id == 'Early_voting'){
-          //     var linechart = document.createElement('div');
-          //     linechart.setAttribute('id','linechart');
-          //     story.appendChild(linechart);
-          // }
           if(record.id == 'strategia'){
+            // Add twitter box
             var video_strategia = document.createElement('div');
             video_strategia.setAttribute('style', 'display:block;margin: auto;;align-content: center;');
             var blockquote = document.createElement('blockquote');
@@ -225,23 +227,19 @@ config.chapters.forEach((record, idx) => {
             p_tweet.setAttribute('lang', 'en');
             p_tweet.setAttribute('dir', 'ltr');
             p_tweet.innerHTML = 'I told you the smear ads were coming, but Georgians will see Sen. <a href=\"https://twitter.com/KLoeffler?ref_src=twsrc%5Etfw\">@Kloeffler</a>\’s ads for what they are. <a href=\"https://t.co/0sgU8ndC63\">pic.twitter.com/0sgU8ndC63</a>&mdash; Reverend Raphael Warnock (@ReverendWarnock) <a href=\"https://twitter.com/ReverendWarnock/status/1331326729739243527?ref_src=twsrc%5Etfw\">November 24, 2020</a>';
-            //p_tweet.innerHTML = 'I told you the smear ads were coming, but Georgians will see Sen. Kloeffler\’s ads for what they are.&mdash; Reverend Raphael Warnock November 24, 2020</a>';
             var twitter_script =  document.createElement('script');
             twitter_script.setAttribute('src', 'https://platform.twitter.com/widgets.js');
             twitter_script.setAttribute('charset', 'utf-8');
-
             blockquote.appendChild(p_tweet);
             blockquote.appendChild(twitter_script);
             video_strategia.appendChild(blockquote);
             story.append(video_strategia);
-            // story.appendChild(video_strategia);
           }if(record.id == 'soldi'){
-              var title_finanziamenti = document.createElement('div');
-              title_finanziamenti.setAttribute('id','title_finanziamenti');
-              //story.insertBefore(title_finanziamenti, story.childNodes[0]);
-              story.insertBefore(title_finanziamenti, story.childNodes[0]);
+            // Add finanziamenti.js visualization
+            var title_finanziamenti = document.createElement('div');
+            title_finanziamenti.setAttribute('id','title_finanziamenti');
+            story.insertBefore(title_finanziamenti, story.childNodes[0]);
           }if(record.id == 'chiVince'){
-            console.log("fonti");
             var tFonti = document.createElement('p');
             tFonti.innerHTML = "</br></br>Fonti e metodologia</br>";
             tFonti.setAttribute('style', 'font-style: oblique;font-weight:700;');
@@ -254,20 +252,21 @@ config.chapters.forEach((record, idx) => {
             story.append(tFonti);
             story.append(pFonti);
             story.append(pcodice);
-
           }
           chapter.appendChild(story);
         }
     }
 
-    // Border only where background is a map
+    // Border only where background is a map. This is identified though 'neutral' attribute of chapters as defined in contenuto.js
     if (record.neutral) chapter.setAttribute('style','box-shadow:0px rgba(0,0,0,0); padding:0px;');
     else chapter.setAttribute('style','box-shadow:1px 1px 5px rgba(0,0,0,.15);padding:18px 20px 18px 23px;');
 
     container.setAttribute('id', record.id);
     container.classList.add('step');
-    //if (record.neutral) container.setAttribute('style','opacity:1;');
 
+    // Change the padding to the chapters to optimize scrolling.
+    // If there is map, the chapter will keep stay active for longer
+    // Conversely, the chapter lenght is reduced
     if(idx === 0 || idx === 2 || idx == 16 ||
       idx === 4|| idx == 18 || idx == 13 || idx == 14 || idx == 19){
       container.classList.add('short_chapter');
@@ -276,6 +275,8 @@ config.chapters.forEach((record, idx) => {
     }else{
       container.classList.add('long_chapter');
     }
+
+    // Activate on page load the title chapter
     if (idx === 0) {
         container.classList.add('active');
         container.classList.add('title');
@@ -290,7 +291,6 @@ config.chapters.forEach((record, idx) => {
     features.appendChild(container);
 });
 
-    console.log(features);
 story.appendChild(features);
 
 var footer = document.createElement('div');
@@ -307,9 +307,13 @@ if (footer.innerText.length > 0) {
     story.appendChild(footer);
 }
 
+// Add resize listener
 window.addEventListener('resize', scroller.resize);
 
 </script>
+
+ <!-- Javascript files are connected at the end because they refer to html elements defined in this page.
+ If they were linked in the head, it would not be possible to retrieve these html elements -->
 <script type="text/javascript" src="senate_viz.js"></script>
 <script type="text/javascript" src="barChart.js"></script>
 <script type="text/javascript" src="lineChart.js"></script>

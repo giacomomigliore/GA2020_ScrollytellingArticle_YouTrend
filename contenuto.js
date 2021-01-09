@@ -1,3 +1,25 @@
+/**
+ * Article Content.
+ *
+ * At the beginnig of the file there is the article text.
+ * In the sencond part of the file all steps (paragraphs) are defined.
+ * Each step has the following variables:
+ * id,
+ * aalignment,
+ * hidden,
+ * title,
+ * subtitle,
+ * fly,                     Related to how the map should move to this location
+ * ease,                    Like fly, but different kind of movement
+ * neutral,                 Related to background. If there is a map in background, the chapter has a border
+ * location: {},
+ * locationMobile: {},
+ * bounds: [],              Related to location, used for Desktop
+ * callback: '',
+ * onChapterEnter: [],      Map layers that need to change of opacity when entering/exiting the chaptes
+ * onChapterExit: []
+ *
+ */
 var titolo = 'USA 2020: dalla Georgia passa il controllo del Senato';
 var sottotitolo = 'Il voto del 5 gennaio deciderà il controllo del Congresso nei primi due anni della presidenza Biden.';
 var intro = 'Mentre l’inauguration day del 20 gennaio si avvicina con non poche difficoltà, tutti gli occhi del mondo e dell’establishment politico americano sono puntati sui ballottaggi per il Senato in programma il prossimo 5 gennaio in Georgia. Un secondo turno che potrebbe assegnare la maggioranza ai democratici (maggioranza che manca dal 2014) o confermare il controllo repubblicano della camera alta del Congresso. Al momento, infatti, i repubblicani avrebbero 50 seggi su 100 e i democratici 48: ai primi basterebbe aggiudicarsi uno solo dei due ballottaggi in Georgia per conservare il controllo del Senato, mentre i secondi dovrebbero vincerli entrambi, finendo 50 e 50 e lasciando i voti decisivi a Kamala Harris, che in qualità di vicepresidente degli Stati Uniti sarà di diritto presidente del Senato con possibilità di voto solo in caso di parità.';
@@ -30,6 +52,7 @@ var sondaggi1 = 'Le ultime tendenze sui ballottaggi mostrano uno scenario in equ
 var sondaggi2 = 'Gli istituti più dalla parte del GOP, invece, riducono di molto il divario tra i candidati, ma assegnano comunque la vittoria ai democratici. L’ultima rilevazione del Trafalgar Group vede Ossoff davanti a Perdue di quasi tre punti e Warnock in vantaggio su Loeffler di quasi un punto percentuale.';
 var titolo_chiVince = 'Chi vincerà';
 var chiVince = 'Dopo aver commesso degli errori - in alcuni casi anche gravi - alle presidenziali, molti sondaggisti sono restii ad analizzare le intenzioni di voto dei ballottaggi in Georgia. Lo stato della corsa è apparso incerto dal primo momento e l’esito finale in uno Stato così diviso sarà influenzato esclusivamente dalla motivazione a votare di uno dei due schieramenti e dalla loro consapevolezza delle conseguenze che i risultati di queste elezioni avranno sugli scenari politici nazionali.';
+
 var durationStandard = 500;
 var durationSlow = 2000;
 
@@ -49,17 +72,10 @@ var config = {
         }
       ]
     },
-    // accessToken: 'pk.eyJ1IjoibWlnbGlvZ2lhY28iLCJhIjoiY2toM3RnaHVoMHBtczJ5cGM3aHFvbTEyMSJ9.rPNIH6k8lCKti258ivyNLg',
     accessToken: '### Insert your token here ###',
-    // showMarkers: false,
-    // markerColor: '#3FB1CE',
     theme: 'light',
-    // use3dTerrain: false,
-    // title: 'The Title Text of this Story',
-    // subtitle: 'A descriptive and interesting subtitle to draw in the reader',
-    // byline: 'By a Digital Storyteller',
-    // footer: 'Autori: Gianluca Lo Nostro e Giacomo Migliore | YouTrend',
     chapters: [
+
         // titolo
         {
             id: 'titolo',
@@ -68,7 +84,6 @@ var config = {
             title: 'USA 2020: Georgia al ballottaggio',
             title: titolo,
             subtitle: sottotitolo,
-            // subtitle: 'Il 5 gennaio avranno luogo i ballottaggi per gli ultimi due seggi del Senato: decideranno il controllo del Congresso per i prossimi due anni',
             description: 'di <a href="https://www.youtrend.it/author/gianluca-lo-nostro/">Gianluca Lo Nostro</a>, <a href="https://www.youtrend.it/author/giacomo-migliore/"">Giacomo Migliore</a>     3 Gennaio 2020',
             fly: false,
             ease: false,
@@ -104,6 +119,7 @@ var config = {
               }
             ]
         },
+
         // Intro senato
         {
             id: 'Senato_in_bilico',
@@ -135,6 +151,7 @@ var config = {
             onChapterEnter: [],
             onChapterExit: []
         },
+
         // Oss Per
         {
             id: 'Presentazione_Per_Oss',
@@ -165,13 +182,13 @@ var config = {
             onChapterEnter: [],
             onChapterExit: []
         },
+
         // Risultati primo turno Oss
         {
             id: 'Risultati_Per_Oss',
             alignment: 'center',
             hidden: false,
             title: '',
-            // description: 'Al primo turno, tenutosi in contemporanea alle elezioni presidenziali, Ossoff ha rimontato grazie ai voti postali registrati dopo il 3 novembre, portando Perdue sotto la fatidica soglia del 50% e costringendolo al ballottaggio.',
             description: Risultati_Per_Oss,
             fly: false,
             ease: false,
@@ -229,6 +246,7 @@ var config = {
                 }
             ]
         },
+
         // Loe War
         {
             id: 'Presentazione_Loe_War',
@@ -260,6 +278,7 @@ var config = {
             onChapterEnter: [],
             onChapterExit: []
         },
+
         // Risultati primo turno War
         {
             id: 'Risultati_Loe_war',
@@ -301,103 +320,13 @@ var config = {
                 }
             ]
         },
-        // // urban
-        // {
-        //     id: 'urban',
-        //     alignment: 'center',
-        //     hidden: false,
-        //     title: 'Come hanno votato le aree urbane?',
-        //     fly: false,
-        //     ease: false,
-        //     neutral: false,
-        //     location: {
-        //       center: [-83.14641, 32.80140],
-        //       zoom: 6.6,
-        //       pitch: 0.00,
-        //       bearing: 0.00
-        //     },
-        //     locationMobile: {
-        //       center: [-83.44111, 32.75509],
-        //       zoom: 5,
-        //       pitch: 0.00,
-        //       bearing: 0.00
-        //     },
-        //     bounds: [
-    		// 				[-77.583360138145, 35.710537054448054],
-    		// 				[-88.70945986185588, 30.325169393359175]
-        //     ],
-        //     callback: '',
-        //     onChapterEnter: [
-        //       {
-        //           layer: 'urban_lay',
-        //           opacity: 1
-        //       }
-        //       ,{
-        //         layer: 'county-line',
-        //         opacity: 1
-        //       }
-        //     ],
-        //     onChapterExit: []
-        // },
-        // // cities
-        // {
-        //     id: 'cities',
-        //     alignment: 'center',
-        //     hidden: false,
-        //     title: 'Noi ci concentriamo su due',
-        //     description: '',
-        //     fly: false,
-        //     ease: false,
-        //     neutral: false,
-        //     location: {
-        //       center: [-83.14641, 32.80140],
-        //       zoom: 6.6,
-        //       pitch: 0.00,
-        //       bearing: 0.00
-        //     },
-        //     locationMobile: {
-        //       center: [-83.44111, 32.75509],
-        //       zoom: 5,
-        //       pitch: 0.00,
-        //       bearing: 0.00
-        //     },
-        //     bounds: [
-    		// 				[-77.583360138145, 35.710537054448054],
-    		// 				[-88.70945986185588, 30.325169393359175]
-        //     ],
-        //     callback: '',
-        //     onChapterEnter: [
-        //       {
-        //           layer: 'urban_lay',
-        //           opacity: 0.5,
-        //           duration: 500
-        //       },{
-        //           layer: 'atl-line',
-        //           opacity: 1,
-        //           duration: 500
-        //       },{
-        //           layer: 'sav-line',
-        //           opacity: 1,
-        //           duration: 500
-        //       }
-        //     ],
-        //     onChapterExit: [
-        //       {
-        //           layer: 'urban_lay',
-        //           opacity: 0
-        //       },{
-        //         layer: 'county-line',
-        //         opacity: 0
-        //       }
-        //     ]
-        // },
+
         // Atlanta_res_oss
         {
             id: 'Atlanta_res_oss',
             alignment: 'center',
             hidden: false,
             title: titolo_Atlanta_res_oss,
-            // description: 'La città di Atlanta, capitale amministrativa ed economica della Georgia, si è rivelata il cuore pulsante dei democratici alle ultime elezioni. Nei suburbs, le aree più lontane dal centro, Ossoff ha conquistato i voti che gli hanno consentito di recuperare la percentuale di voti necessaria per andare al ballottaggio.',
             description: Atlanta_res_oss,
             fly: true,
             ease: false,
@@ -433,6 +362,7 @@ var config = {
               }
             ]
         },
+
         // Atlanta_res_war
         {
             id: 'Atlanta_res_war',
@@ -479,6 +409,7 @@ var config = {
               }
             ]
         },
+
         // Savannah_res_oss
         {
             id: 'Savannah_res_oss',
@@ -523,6 +454,7 @@ var config = {
               }
             ]
         },
+
         // Savannah_res_war
         {
             id: 'Savannah_res_war',
@@ -569,6 +501,7 @@ var config = {
               }
             ]
         },
+
         // Risultati_Biden_Oss
         {
             id: 'Risultati_Biden_Oss',
@@ -610,6 +543,7 @@ var config = {
               }
             ]
         },
+
         // gwinnett
         {
             id: 'gwinnett',
@@ -658,6 +592,7 @@ var config = {
               }
             ]
         },
+
         // strategia
         {
             id: 'strategia',
@@ -696,6 +631,7 @@ var config = {
             ],
             onChapterExit: []
         },
+
         // strategia2
         {
             id: 'strategia2',
@@ -725,6 +661,7 @@ var config = {
             onChapterEnter: [],
             onChapterExit: []
         },
+
         // soldi
         {
             id: 'soldi',
@@ -755,6 +692,7 @@ var config = {
             onChapterEnter: [],
             onChapterExit: []
         },
+
         // Early voting grafico a linee
         {
             id: 'Early_voting',
@@ -785,6 +723,7 @@ var config = {
             onChapterEnter: [],
             onChapterExit: []
         },
+
         // Early voting tabella
         {
             id: 'Early_voting2',
@@ -814,6 +753,7 @@ var config = {
             onChapterEnter: [],
             onChapterExit: []
         },
+
         // Sondaggi
         {
             id: 'sondaggi',
@@ -846,6 +786,7 @@ var config = {
             onChapterEnter: [],
             onChapterExit: []
         },
+
         // Sondaggi2
         {
             id: 'sondaggi2',
@@ -876,6 +817,7 @@ var config = {
             onChapterEnter: [],
             onChapterExit: []
         },
+        
         // chiVince
         {
             id: 'chiVince',

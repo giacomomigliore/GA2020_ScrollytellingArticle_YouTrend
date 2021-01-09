@@ -1,3 +1,11 @@
+/**
+ * Ethnicity early vote table.
+ *
+ * The file creates a simple html talbe
+ *
+ * Data come from: https://electproject.github.io/Early-Vote-2020G/GA_RO.html
+ *
+ */
 var dataEv = [
  {
    "Etnia": "Non-Hispanic White",
