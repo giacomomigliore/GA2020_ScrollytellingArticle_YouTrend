@@ -5,18 +5,18 @@
 
  ## Table of contents
  * [General info](#general-info)
- * [Technologies](#technologies)
+ * [Languages and Libraries](#languages-and-libraries)
  * [Setup](#setup)
 
  ## General info
  This project is simple Lorem ipsum dolor generator.
 
- ## Technologies
+ ## Languages and Libraries
  Project is created with:
  * Python
- * Javascript
- ... * Mapbox-gl.js
- ... * d3.js
+ * Javascript:
+   * Mapbox-gl.js
+   * d3.js
 
  ## Setup
  To run this project, install it locally using npm:
