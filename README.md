@@ -11,14 +11,14 @@
  * [License](#license)
 
  ## General info
- This project is simple Lorem ipsum dolor generator.
+ This is a scrollytelling article created for YouTrend. The content presents what people need to know before the 2021 Senate Goergia runoffs. The article is entirely created with html and javascript. The data displayed on the mapx and charts has been downloaded either manually or scratched with python, it has been cleant with python and uploaded in csv filed on github.
 
  ## Final result
   ![alt text](./GIF/GIFDesktop.gif)
 
  ## Visualizations
  * Senate members before Georgia runoff
-   ![alt text](https://github.com/giacomomigliore/GA2020_ScrollytellingArticle_YouTrend/tree/main/images/senate_viz.PNG)
+   <img src="https://github.com/giacomomigliore/GA2020_ScrollytellingArticle_YouTrend/tree/main/images/senate_viz.PNG" width="700">
  * November 3 results
    ![alt text](https://github.com/giacomomigliore/GA2020_ScrollytellingArticle_YouTrend/tree/main/images/bar_result.PNG)
  * Legend to map comparing number of votes received by Biden and by Ossoff on November 3
@@ -31,6 +31,10 @@
  ## Built with
  Project is created with:
  * Python
+   * Pandas
+   * urllib.request
+   * bs4
+   * selenium.webdriver
  * Javascript
    * Mapbox-gl.js
    * d3.js
