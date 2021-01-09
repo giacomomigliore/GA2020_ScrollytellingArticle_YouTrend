@@ -18,9 +18,9 @@
 
  ## Visualizations
  * Senate members before Georgia runoff
-   ![alt text](./images/senate_viz.PNG)
+   ![alt text](https://github.com/giacomomigliore/GA2020_ScrollytellingArticle_YouTrend/tree/main/images/senate_viz.PNG)
  * November 3 results
-   ![alt text](./images/bar_result.PNG)
+   ![alt text](https://github.com/giacomomigliore/GA2020_ScrollytellingArticle_YouTrend/tree/main/images/bar_result.PNG)
  * Legend to map comparing number of votes received by Biden and by Ossoff on November 3
    ![alt text](./images/bar_legend.PNG)
  * Dollars spent between November 3 and January 5

@@ -30,7 +30,6 @@ var valueline2 = d3.line()
   .x(function(d) { return xLC(d.dayToElection); })
   .y(function(d) {  return yLC(d.ev2021); });
 
-
 // Retrieve the div where the linechiart will be inserted
 // Append the svgLC obgect to the body of the page
 // Corrects to viewBox to correctly show the y axis lables
