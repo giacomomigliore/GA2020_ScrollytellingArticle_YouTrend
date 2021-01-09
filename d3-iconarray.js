@@ -1,3 +1,10 @@
+/**
+ * Library used in senate_viz.js.
+ *
+ * Original code is an adaptation from: https://github.com/tomgp/d3-iconarray
+ *
+ */
+
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('d3-scale')) :
 	typeof define === 'function' && define.amd ? define(['exports', 'd3-scale'], factory) :

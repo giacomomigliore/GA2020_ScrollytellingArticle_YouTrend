@@ -31,7 +31,7 @@ var valueline2 = d3.line()
   .y(function(d) {  return yLC(d.ev2021); });
 
 // Retrieve the div where the linechiart will be inserted
-// Append the svgLC obgect to the body of the page
+// Append the svgLC obgect to the parent div
 // Corrects to viewBox to correctly show the y axis lables
 // Center the chart with CSS display and margin attributes
 // Move to the top left margin

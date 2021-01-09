@@ -41,8 +41,7 @@ function barChart(divID, RepArg, DemArg, CandidateR, CandidateD) {
     .keys(["Dem", "Oth", "Rep"]);
   var stackedSeries = stackGen(data);
 
-  // Set the ranges.
-  // Ranges are used to interpolate the values to plot on the x and y axis within the dimension of the area of the chart (in pixels).
+  // Set the ranges
   var xScale = d3.scaleLinear()
     .domain([0,100])
     .range([plotWidth,0]);
@@ -53,10 +52,8 @@ function barChart(divID, RepArg, DemArg, CandidateR, CandidateD) {
     .range(["#a32121", "#CCC", "#253278"]);
 
   // Retrieve the div where the linechiart will be inserted
-  // Append the svgLC obgect to the body of the page
-  // Corrects to viewBox to correctly show the y axis lables
+  // Append the svgLC obgect to the parent div
   // Center the chart with CSS display and margin attributes
-  // Move to the top left margin
   const svg = d3.select("#" + divID)
   .append("svg")
   .attr("width", plotWidth)

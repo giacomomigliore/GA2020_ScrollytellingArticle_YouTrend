@@ -1,3 +1,15 @@
+/**
+ * Senate visualization.
+ *
+ * The file desings 100 dots, one for each senator, with the colout of its party.
+ * Senators in a race on November 3 have bigger dots, and races that needed a runoff to
+ * determine a winner were coloured in light grey.
+ *
+ * This code is an adaptation from: http://bl.ocks.org/tomgp/59b5d482551ca14a4063
+ *
+ */
+
+// Used to order the dots
 var order = [
 	'R',
 	'YesR',
@@ -6,6 +18,9 @@ var order = [
 	'D',
 	'I' ]
 
+
+// Make the barchart responsive:
+// Define the barchart dimensions according to its parent div
 var widthS = document.getElementById('senate-example').clientWidth;
 var heightS = widthS*3/7;
 if(mobileDisplay){heightS = heightS + 50};
@@ -14,6 +29,9 @@ var plotWidthS = widthS - (marginS.left + marginS.right);
 var circleRadiusElection = 5;
 var circleRadius = 2;
 
+// Retrieve the div where the linechiart will be inserted
+// Append the svgLC obgect to the parent div
+// Takes the full sizw of its parent
 var svg = d3.select('#senate-example')
 	.append('svg')
 		.attr('width',widthS)
@@ -26,22 +44,26 @@ var svg = d3.select('#senate-example')
 		.attr('style','margin:auto;')
 		.attr('transform','translate('+marginS.left+','+marginS.top+')')
 
+// Get the data from the csv and then sort them
 d3.csv("https://raw.githubusercontent.com/giacomomigliore/USA2020Elections/master/data-senate-2020.csv")
 	.then(function (dataS) {
 	var sorted = dataS.sort(function(a,b){
 	return order.indexOf(a['order']) - order.indexOf(b['order']);
 });
 
+// Create a layout (see d3_iconarray.js)
+// widthfirst(false) puts republicans on the left side and democrats on the right side
 var layout = d3_iconarray.layout().height(5).widthFirst(false);
-
 var grid = layout(sorted);
 
+// Set the ranges
 var scale = d3_iconarray.scale()
 	.domain([0, layout.maxDimension(sorted.length)])
 	.range([0, plotWidthS])
 	.gapInterval(10)
 	.gapSize(1);
 
+// Add the dots
 svg.selectAll('circle')
 	.data(grid, function(d){ return d.data.seatid; })
 		.enter()
@@ -65,6 +87,7 @@ svg.selectAll('circle')
 var chartWidth = d3.select('g#chart').node().getBBox().width;
 var chartHeight = d3.select('g#chart').node().getBBox().height;
 
+// Add a line in between the Reps and the Dems
 svg.append('line')
 	.style("stroke", "#a7a59b")
 	.style("stroke-width", 1)
@@ -73,6 +96,7 @@ svg.append('line')
 	.attr("x2", chartWidth/2)
 	.attr("y2", chartHeight);
 
+// Add a description
 var textRepDem = ['Repubblicani','Democratici'];
 svg.append("text").selectAll("tspan")
   .data(textRepDem)
@@ -83,7 +107,6 @@ svg.append("text").selectAll("tspan")
 	.attr('fill','#74736c')
 	.style('font-size', 25 * (chartWidth / 600) + 'px')
 	.text(function(d){ return d; });
-
 var textNum = ['50','48'];
 svg.append("text").selectAll("tspan")
   .data(textNum)
@@ -95,13 +118,12 @@ svg.append("text").selectAll("tspan")
 	.style('font-size', 45 * (chartWidth / 600) + 'px')
 	.text(function(d){ return d; });
 
-
+// Add a legend
 var columns = [
 	['Repubblicano'],
 	['Ballottaggio'],
 	['Democratico']
 ];
-
 d3.select('svg').selectAll('g.key-column')
 	.data(columns).enter()
 	.append('g')
@@ -131,7 +153,6 @@ d3.select('svg').selectAll('g.key-column')
 						.attr('class',function(d){
 							return d.replace(/\s/g,'-')
 						});
-
 					parent.append('text')
 						.attr('dx', marginS.left)
 						.style('font-size', 20 * (chartWidth / 600) + 'px')
@@ -144,95 +165,3 @@ d3.select('svg').selectAll('g.key-column')
 				});
 		});
 });
-
-// var svgBar = d3.select("#results-bar"),
-// 		margin = {top: 35, left: 35, bottom: 0, right: 15},
-// 		width = +svgBar.attr("width") - margin.left - margin.right,
-// 		height = +svgBar.attr("height") - margin.top - margin.bottom;
-//
-// var bars = svgBar.selectAll("g.layer").selectAll("rect")
-// 			.data([20,60,20]);
-//
-// bars.exit().remove()
-//
-// barsselectAll("rect")
-// 	.data([20,30,60])
-// 	.enter().append("rect")
-// 	.attr("height", y.bandwidth())
-// 	.merge(bars)
-// 	.transition().duration(speed)
-// 	.attr("y", d => y(["b","e","c"]))
-// 	.attr("x", d => x(d[0]))
-// 	.attr("width", d => x(d[1]) - x(d[0]))
-//
-// 	// data.sort(function(a, b) { return b.total - a.total; });
-//  // y.domain(data.map(function(d) { return d.State; }));					// x.domain...
-//  // x.domain([0, d3.max(data, function(d) { return d.total; })]).nice();	// y.domain...
-//  // z.domain(keys);
-//
-//  g.append("g")
-// 	 .selectAll("g")
-// 	 .data(d3.stack().keys(keys)(data))
-// 	 .enter().append("g")
-// 		 .attr("fill", function(d) { return z(d.key); })
-// 	 .selectAll("rect")
-// 	 .data(function(d) { return d; })
-// 	 .enter().append("rect")
-// 		 .attr("y", function(d) { return y(d.data.State); })	    //.attr("x", function(d) { return x(d.data.State); })
-// 		 .attr("x", function(d) { return x(d[0]); })			    //.attr("y", function(d) { return y(d[1]); })
-// 		 .attr("width", function(d) { return x(d[1]) - x(d[0]); })	//.attr("height", function(d) { return y(d[0]) - y(d[1]); })
-// 		 .attr("height", y.bandwidth());
-
-
-var widthBar = 960 - marginS.left - marginS.right,
-    heightBar = 500 - marginS.top - marginS.bottom;
-
-var svgBar = d3.select("body")
-  .append("svg")
-  .attr("width", widthBar + marginS.left + marginS.right)
-  .attr("height", heightBar + marginS.top + marginS.bottom)
-  .append("g")
-  .attr("transform", "translate(" + marginS.left + "," + marginS.top + ")");
-
-
-/* Data in strings like it would be if imported from a csv */
-
-var data = [
-  { year: "2006", redDelicious: "10", mcintosh: "15", oranges: "9", pears: "6" },
-];
-
-
-// Transpose the data into layers
-// var dataset = d3.layout.stack()(["redDelicious", "mcintosh", "oranges", "pears"].map(function(fruit) {
-//   return data.map(function(d) {
-//     return {x: parse(d.year), y: +d[fruit]};
-//   });
-// }));
-
-//
-// // Set x, y and colors
-// var x = d3.scale.ordinal()
-//   .domain(dataset[0].map(function(d) { return d.x; }))
-//   .rangeRoundBands([10, widthBar-10], 0.02);
-//
-// var y = d3.scale.linear()
-//   .domain([0, d3.max(dataset, function(d) {  return d3.max(d, function(d) { return d.y0 + d.y; });  })])
-//   .range([heightBar, 0]);
-//
-// var colors = ["b33040", "#d25c4d", "#f2b447", "#d9d574"];
-//
-// // Create groups for each series, rects for each segment
-// var groups = svgBar.selectAll("g.cost")
-//   .data(dataset)
-//   .enter().append("g")
-//   .attr("class", "cost")
-//   .style("fill", function(d, i) { return colors[i]; });
-//
-// var rect = groups.selectAll("rect")
-//   .data(function(d) { return d; })
-//   .enter()
-//   .append("rect")
-//   .attr("x", function(d) { return x(d.x); })
-//   .attr("y", function(d) { return y(d.y0 + d.y); })
-//   .attr("height", function(d) { return y(d.y0) - y(d.y0 + d.y); })
-//   .attr("width", x.rangeBand());
