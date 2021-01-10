@@ -18,15 +18,26 @@
  ## Built with
  Project is created with:
  * Python
-   * Pandas
+   * [Pandas](https://pandas.pydata.org/)
    * urllib.request
    * bs4
-   * selenium.webdriver
+   * [selenium.webdriver](https://selenium-python.readthedocs.io/)
  * Javascript
-   * Mapbox-gl.js
-   * d3.js
+   * [Mapbox-gl.js](https://www.mapbox.com/mapbox-gljs)
+   * [d3.js](https://d3js.org/)
 
  ## Project files
+ ### Python
+ Python has been used to scrap data online and clean them. The resulting .csv files are joined with the geodata (maps) or are used to create d3 visualization.
+ | File name                             |Description                                                                            |
+ | ------------------------------------- |--------------------------------------------------------------------------------------|
+ | Download_Data_Precinct.ipynb         | Scrap the precinct level results from each county webpage with selenium |
+ | Data_transformation_Precinct.ipynb       | Clean precinct level data and save them in csv format |
+ | Data_transformation_Counties.ipynb      | Clean county level data and save them in csv format |
+ | Data_transformation_Early_voting.ipynb        | Clean data from vote registers (4 mio records) and save in csv the number of votes casted each day before elecyion day |
+
+ ### Javascript
+ The map, visualizations and article body are created with Javascript and html. 
  | File name                             |Description                                                                            |
  | ------------------------------------- |--------------------------------------------------------------------------------------|
  | Index.html         | The main file. The body is made up by 3 divs and the javascript code to create the rest of the article |
@@ -39,7 +50,7 @@
  | lineChart.js       | The linechart comparing early votes before November 3, 2020 and January 5, 2021 |
 
  ## Prerequisites
- * To run this page locally, you need to create a Mapbox access token by creating an account on Mapbox.com.
+ * To run this page locally, you need to create a Mapbox access token by creating an account on [Mapbox.com](https://www.mapbox.com/).
  * To run the Python code to download and clean the necessary data, be sure to use the correct full paths when writing or reading files.
 
  ## Acknowledgments
