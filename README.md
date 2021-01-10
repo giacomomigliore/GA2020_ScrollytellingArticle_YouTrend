@@ -73,6 +73,7 @@
   ![alt text](./images/early_vote.PNG)
 
  ## Responsiveness
+ All maps and visualization are responsive. User experience on mobile is comparable with user experience on Desktop. 
  ![alt text](./GIF/GIFMobile.gif)
 
  ## License
