@@ -49,6 +49,7 @@
  * The senate visualization in the introduction was inspired from Tom Pearson's [2014 US senate election](http://bl.ocks.org/tomgp/59b5d482551ca14a4063) visualization for the Financial Times
 
  ## d3 Visualizations
+ The following visualization are included in the article:
 * Senate members before Georgia runoff
   ![alt text](./images/senate_viz.PNG)
 * November 3 results
