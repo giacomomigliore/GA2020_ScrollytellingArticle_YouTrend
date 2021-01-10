@@ -1,8 +1,9 @@
+![alt text](./GIF/GIFDesktop.gif)
+
 # GA2020_ScrollytellingArticle_YouTrend
 
  ## Table of contents
  * [General info](#general-info)
- * [Final result](#final-result)
  * [Built with](#built-with)
  * [Project files](#project-files)
  * [Prerequisites](#prerequisites)
@@ -11,10 +12,8 @@
  * [License](#license)
 
  ## General info
- This is a scrollytelling article created for [YouTrend](https://www.youtrend.it "YouTrend's Homepage"). The content presents what people need to know before the 2021 Senate Goergia runoffs. The article is entirely created with html and javascript. The data displayed on the maps and charts has been either downloaded  manually or scratched with python, it has then been cleant with python and uploaded in a csv file on github, to be finally connected with the webpage.The article was published at [this page](https://www.youtrend.it/2021/01/04/usa-2020-dalla-georgia-passa-il-controllo-del-senato/ "USA 2020: dalla Georgia passa il controllo del Senato").
+ This is a scrollytelling article created for [YouTrend](https://www.youtrend.it "YouTrend's Homepage"). The content presents what people need to know before the 2021 Senate Goergia runoffs. The article is entirely created with html and javascript. The data displayed on the maps and charts has been either downloaded  manually or scratched with python, it has then been cleant with python and uploaded in a csv file on github, to be finally connected with the webpage.The article was published at [this link](https://www.youtrend.it/2021/01/04/usa-2020-dalla-georgia-passa-il-controllo-del-senato/ "USA 2020: dalla Georgia passa il controllo del Senato").
 
- ## Final result
-  ![alt text](./GIF/GIFDesktop.gif)
 
  ## Built with
  Project is created with:
@@ -52,7 +51,7 @@
  The following visualization are included in the article:
 * Senate members before Georgia runoff
   ![alt text](./images/senate_viz.PNG)
-* November 3 results
+* November 3 results </br>
   ![alt text](./images/bar_result.PNG)
 * Legend to map comparing number of votes received by Biden and by Ossoff on November 3
   ![alt text](./images/bar_legend.PNG)
