@@ -7,6 +7,7 @@
  * [Final result](#final-result)
  * [d3 Visualizations](#d3-visualizations)
  * [Built with](#built-with)
+ * [Project files](#project-files)
  * [Prerequisites](#prerequisites)
  * [License](#license)
  * [Acknowledgments](#acknowledgments)
@@ -40,9 +41,22 @@
    * Mapbox-gl.js
    * d3.js
 
+ ## Project files
+
+ | File name                             |Description                                                                            |
+ | ------------------------------------- |--------------------------------------------------------------------------------------:|
+ | Index.html         | The main file. The body is made up by 3 divs and the javascript code to create the rest of the article |
+ | contenuto.js       | In this file there is the article text and the settings of all chapters (paragraphs) |
+ | mapHnadling.js     | In this file the map and its layers are created |
+ | senate_viz.js      | The visualization of the senate before the runoff |
+ | barChart.js        | The barcharts of the two results of the November 3 elections |
+ | barChartLegenda.js | The barchart that works as a legend for the map comparing results of Biden and Ossoff |
+ | finanziamenti.js   | The amount of dollars spent written in a big, green text |
+ | lineChart.js       | The linechart comparing early votes before November 3, 2020 and January 5, 2021 |
+
  ## Prerequisites
-* To run this page locally, you need to create a Mapbox access token by creating an account on Mapbox.com.
-* To run the Python code to download and clean the necessary data, be sure to use the correct full paths when writing or reading files.
+ * To run this page locally, you need to create a Mapbox access token by creating an account on Mapbox.com.
+ * To run the Python code to download and clean the necessary data, be sure to use the correct full paths when writing or reading files.
 
  ## License
 This project is licensed under the [GNU GPLv3 License](https://choosealicense.com/licenses/gpl-3.0/).
