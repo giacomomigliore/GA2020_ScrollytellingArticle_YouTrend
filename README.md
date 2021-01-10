@@ -9,7 +9,7 @@
  * [Prerequisites](#prerequisites)
  * [Acknowledgments](#acknowledgments)
  * [d3 Visualizations](#d3-visualizations)
- * [Responsiveness](#responsiveness)
+ * [Mobile Support](#mobile-support)
  * [License](#license)
 
  ## General info
@@ -72,8 +72,8 @@
 * Comparison between November 3 early votes (dashed line) and January 5 early votes (black line)
   ![alt text](./images/early_vote.PNG)
 
- ## Responsiveness
- All maps and visualization are responsive. User experience on mobile is comparable with user experience on Desktop. 
+ ## Mobile Support
+ All maps and visualization are responsive. User experience on mobile is comparable with user experience on Desktop.
  ![alt text](./GIF/GIFMobile.gif)
 
  ## License
