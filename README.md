@@ -5,30 +5,18 @@
  ## Table of contents
  * [General info](#general-info)
  * [Final result](#final-result)
- * [d3 Visualizations](#d3-visualizations)
  * [Built with](#built-with)
  * [Project files](#project-files)
  * [Prerequisites](#prerequisites)
  * [License](#license)
  * [Acknowledgments](#acknowledgments)
+ * [d3 Visualizations](#d3-visualizations)
 
  ## General info
  This is a scrollytelling article created for YouTrend. The content presents what people need to know before the 2021 Senate Goergia runoffs. The article is entirely created with html and javascript. The data displayed on the mapx and charts has been downloaded either manually or scratched with python, it has been cleant with python and uploaded in csv filed on github.
 
  ## Final result
   ![alt text](./GIF/GIFDesktop.gif)
-
- ## d3 Visualizations
- * Senate members before Georgia runoff
-   ![alt text](./images/senate_viz.PNG)
- * November 3 results
-   ![alt text](./images/bar_result.PNG)
- * Legend to map comparing number of votes received by Biden and by Ossoff on November 3
-   ![alt text](./images/bar_legend.PNG)
- * Dollars spent between November 3 and January 5
-   ![alt text](./images/dollars_spent.PNG)
- * Comparison between November 3 early votes (dashed line) and January 5 early votes (black line)
-   ![alt text](./images/early_vote.PNG)
 
  ## Built with
  Project is created with:
@@ -44,7 +32,7 @@
  ## Project files
 
  | File name                             |Description                                                                            |
- | ------------------------------------- |--------------------------------------------------------------------------------------:|
+ | ------------------------------------- |--------------------------------------------------------------------------------------|
  | Index.html         | The main file. The body is made up by 3 divs and the javascript code to create the rest of the article |
  | contenuto.js       | In this file there is the article text and the settings of all chapters (paragraphs) |
  | mapHnadling.js     | In this file the map and its layers are created |
@@ -64,4 +52,16 @@ This project is licensed under the [GNU GPLv3 License](https://choosealicense.co
  ## Acknowledgments
  * The scrollytelling approach was created using the guide: ["How to build a “scrollytelling” map"](https://blog.mapbox.com/how-to-build-a-scrollytelling-map-ead6baf2cd1b);
  * Joining electoral results and geographical areas has been done following the ["Data Joins"](https://labs.mapbox.com/education/impact-tools/data-joins/) guide;
- * The senate visualization in the introduction was inspired from Tom Pearson's [2014 US senate election](http://bl.ocks.org/tomgp/59b5d482551ca14a4063) visualization for the Financial Times.
+ * The senate visualization in the introduction was inspired from Tom Pearson's [2014 US senate election](http://bl.ocks.org/tomgp/59b5d482551ca14a4063) visualization for the Financial Times
+
+## d3 Visualizations
+* Senate members before Georgia runoff
+  ![alt text](./images/senate_viz.PNG)
+* November 3 results
+  ![alt text](./images/bar_result.PNG)
+* Legend to map comparing number of votes received by Biden and by Ossoff on November 3
+  ![alt text](./images/bar_legend.PNG)
+* Dollars spent between November 3 and January 5
+  ![alt text](./images/dollars_spent.PNG)
+* Comparison between November 3 early votes (dashed line) and January 5 early votes (black line)
+  ![alt text](./images/early_vote.PNG)
