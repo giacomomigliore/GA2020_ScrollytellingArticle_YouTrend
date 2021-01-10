@@ -9,6 +9,7 @@
  * [Prerequisites](#prerequisites)
  * [Acknowledgments](#acknowledgments)
  * [d3 Visualizations](#d3-visualizations)
+ * [Responsiveness](#responsiveness)
  * [License](#license)
 
  ## General info
@@ -37,12 +38,12 @@
  | Data_transformation_Early_voting.ipynb        | Clean data from vote registers (4 mio records) and save in csv the number of votes casted each day before elecyion day |
 
  ### Javascript
- The map, visualizations and article body are created with Javascript and html. 
+ The map, visualizations and article body are created with Javascript and html.
  | File name                             |Description                                                                            |
  | ------------------------------------- |--------------------------------------------------------------------------------------|
  | Index.html         | The main file. The body is made up by 3 divs and the javascript code to create the rest of the article |
  | contenuto.js       | In this file there is the article text and the settings of all chapters (paragraphs) |
- | mapHnadling.js     | In this file the map and its layers are created |
+ | mapHandling.js     | In this file the map and its layers are created |
  | senate_viz.js      | The visualization of the senate before the runoff |
  | barChart.js        | The barcharts of the two results of the November 3 elections |
  | barChartLegenda.js | The barchart that works as a legend for the map comparing results of Biden and Ossoff |
@@ -70,6 +71,9 @@
   ![alt text](./images/dollars_spent.PNG)
 * Comparison between November 3 early votes (dashed line) and January 5 early votes (black line)
   ![alt text](./images/early_vote.PNG)
+
+ ## Responsiveness
+ ![alt text](./GIF/GIFMobile.gif)
 
  ## License
 This project is licensed under the [GNU GPLv3 License](https://choosealicense.com/licenses/gpl-3.0/).
